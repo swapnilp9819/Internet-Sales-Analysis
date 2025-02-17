@@ -20,9 +20,19 @@ The dashboard is divided into three main sections, each focusing on different as
 Data is sourced from the AdventureWorks sample database, offering a comprehensive set of internet sales and product information.
 
 ## Files in the Repository
-- `RequirementsMail.docx`, `BusinessDemandOverview.docx`, and various SQL query files for database updates and data preparation.
-- Cleansed data files and a `SalesBudget.xlsx` for budget comparisons.
-- `Internet_Sales_Dashboard.pbix`, containing the full Power BI dashboard setup.
+- **Documents**:
+  - `RequirementsMail.docx`: Requirement mail from Steven detailing the project needs.
+  - `BusinessDemandOverview.docx`: Document outlining the business demand overview created after analyzing the requirements.
+  - `Internet_Sales_Database_Update_Queries.txt`: SQL queries used to update the database before use.
+  - `Cleaned_Tables_Queries.txt`: SQL queries used to prepare data tables for dashboard integration.
+- **Data Files**:
+  - `DimCustomers_Cleaned.csv`
+  - `DimDates_Cleaned.csv`
+  - `DimProducts_Cleaned.csv`
+  - `FactInternetSales_Cleaned.csv`: Cleansed data files used in the dashboard.
+- **Additional Files**:
+  - `SalesBudget.xlsx`: Sales budget file for comparing actual sales against projections.
+  - `Internet_Sales_Dashboard.pbix`: Power BI dashboard file containing three dashboards: Sales Overview, Customer Details, and Product Details.
 
 ## Installation and Setup
 1. Install SQL Server and SQL Server Management Studio.
@@ -30,5 +40,3 @@ Data is sourced from the AdventureWorks sample database, offering a comprehensiv
 3. Install Microsoft Power BI.
 4. Clone this repository and follow the detailed setup instructions provided.
 
-## Usage
-Explore the interactive dashboards within Power BI to analyze and visualize sales data effectively. Users can filter and manipulate the data across various dimensions to gain detailed insights.
