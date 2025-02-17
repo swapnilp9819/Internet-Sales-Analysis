@@ -1,0 +1,67 @@
+-- Cleaned DimDate table 
+SELECT
+	[DateKey],
+	[FullDateAlternateKey] AS Date,
+    [EnglishDayNameOfWeek] AS Day,
+    [WeekNumberOfYear] AS WeekNo,
+    LEFT([EnglishMonthName],3) AS Month,
+    [MonthNumberOfYear] AS MonthNo,
+    [CalendarQuarter] AS Quarter,
+    [CalendarYear] AS Year
+FROM
+	[AdventureWorksDW2019].[dbo].[DimDate]
+WHERE [CalendarYear] >= 2019
+
+
+--DimCustomer Cleaned
+SELECT
+	C.CustomerKey,
+	C.FirstName AS [First Name],
+	C.LastName AS [Last Name],
+	CONCAT(C.FirstName, ' ', C.LastName) AS [Full Name],
+	(CASE C.Gender WHEN 'M' THEN 'Male' WHEN 'F' THEN 'Female' END) AS [Gender],
+	C.DateFirstPurchase,
+	G.City AS [Customer City]
+FROM
+	DimCustomer C 
+	LEFT JOIN DimGeography G ON C.GeographyKey = G.GeographyKey
+ORDER BY 
+	C.CustomerKey ASC
+	
+	
+--Cleaned DimProducts Table
+SELECT
+	P.ProductKey,
+	P.ProductAlternateKey AS [Product Item Code],
+	P.EnglishProductName AS [Product Name],
+	PC.EnglishProductCategoryName AS [Product Category],
+	SubC.EnglishProductSubcategoryName AS [Sub Category],
+	P.Color AS [Product Color],
+	P.Size AS [Product Size],
+	P.ProductLine AS [Product Line],
+	P.ModelName AS [Product Name],
+	P.EnglishDescription AS [Product Description],
+	ISNULL(P.Status, 'Outdated') AS [Product Status]
+FROM DimProduct P
+LEFT JOIN DimProductSubcategory SubC ON P.ProductSubcategoryKey = SubC.ProductSubcategoryKey
+LEFT JOIN DimProductCategory PC ON SubC.ProductCategoryKey = PC.ProductCategoryKey
+ORDER BY P.ProductKey
+
+
+
+--Cleaned FactInternetSales
+SELECT
+	ProductKey,
+	OrderDateKey,
+	DueDateKey,
+	ShipDateKey,
+	CustomerKey,
+	SalesOrderNumber,
+	SalesAmount
+FROM
+	FactInternetSales
+WHERE
+	--LEFT(OrderDateKey,4) >= YEAR(GETDATE()) - 2 --To make sure we always only fetch two years of data
+	LEFT(OrderDateKey,4) >= 2021 - 2
+ORDER BY OrderDateKey ASC
+
